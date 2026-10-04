@@ -1,0 +1,2 @@
+# WSL 里执行的脚本必须保持 LF，否则 bash 报 bad interpreter: /bin/bash^M
+*.sh text eol=lf

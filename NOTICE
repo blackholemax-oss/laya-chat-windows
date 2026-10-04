@@ -1,0 +1,55 @@
+Laya 聊天意图识别（laya-chat-windows）
+Copyright (c) 2026 laya-chat-windows contributors
+
+本项目基于 Jev 聊天助手 Windows 版（jev-chat-windows，https://github.com/jev-chat/jev-chat-windows）
+二次开发：采集层（app/capture.py、app/ocr.py、app/worker.py、app/chatapps.py、app/debugwin.py、
+app/i18n.py）直接复用了上游代码（MIT 协议，全文见 LICENSES/jev-LICENSE，来源声明见 LICENSES/jev-NOTICE）。
+上游版权归 rezoch340、Finderchangchang 及 jev-chat contributors 所有。
+
+与本项目自身的区别：
+- 判断内核不再使用远程付费的 Jev/LLM，改为本地部署的开源模型 Laya（Apache-2.0，https://github.com/ConvaAI/laya）。
+- 只做「意图识别」，不做回复起草，不自动发送任何消息。
+
+本项目自身代码以 MIT 协议开源（见 LICENSE）：允许个人和商业使用、修改、再分发、集成到自有产品中，
+无需付费或事先授权。分发或商用时，必须保留 LICENSE 与本 NOTICE 文件，并在产品的「关于」页、
+说明文档或发布页中注明出处。推荐写法：
+「基于 jev-chat-windows（https://github.com/jev-chat/jev-chat-windows）二次开发」。
+不得使用「jev-chat-windows」「Jev 聊天助手」「jev-chat」名称或 chatjevs.com 域名暗示由原作者出品或背书。
+
+注意：上面只在约束本项目自己的代码。调试视图（app/debugwin.py）用到 PySide6-Fluent-Widgets，
+该组件是 GPLv3 协议，非商用免费，商用需要另外购买商业授权（见 https://qfluentwidgets.com/price）。
+若把含该组件的程序打包分发，发布包整体受 GPLv3 约束；想商用请自行向该组件作者购买授权，
+或自行替换该组件，本项目不代为处理，也不对发布包能否商用做任何保证。
+
+## 第三方组件
+
+| 组件 | 许可证 | 备注 |
+| --- | --- | --- |
+| Laya | Apache-2.0 | 本地意图判断模型，部署在 WSL，经 HTTP 调用 |
+| RapidOCR (rapidocr-onnxruntime) | Apache-2.0 | 离线中文 OCR |
+| windows-capture | MIT | Windows Graphics Capture 的 Python 绑定 |
+| numpy | BSD-3-Clause | 图像数组与消息区检测 |
+| PySide6 | LGPL-3.0 | Qt for Python 官方绑定 |
+| PySide6-Fluent-Widgets | GPLv3 | 仅调试视图用；非商用免费，商用需另行购买授权 |
+
+各组件的完整许可证文本以其官方发行包（PyPI / 官网）为准，本文件不逐一转载。
+
+---
+
+This project's own code is licensed under the MIT License (see LICENSE).
+It is a derivative of jev-chat-windows (https://github.com/jev-chat/jev-chat-windows), whose capture
+layer is reused verbatim under the MIT License (full text in LICENSES/jev-LICENSE, attribution in
+LICENSES/jev-NOTICE); upstream copyright belongs to rezoch340, Finderchangchang and the jev-chat
+contributors.
+
+Unlike upstream, the decision engine does not call any remote paid Jev/LLM service: it runs the
+open-source Laya model locally (Apache-2.0, https://github.com/ConvaAI/laya) and only performs intent
+recognition -- it never drafts or sends messages.
+
+When you distribute or commercialize this software or a derivative, keep the LICENSE and this NOTICE,
+and credit the source. Do not use the project name, "Jev Chat Assistant", "jev-chat" or the
+chatjevs.com domain to imply endorsement by the original authors.
+
+Note: the debug view (app/debugwin.py) uses PySide6-Fluent-Widgets, licensed under GPLv3 (free for
+non-commercial use; commercial license must be purchased separately, see
+https://qfluentwidgets.com/price). Any distributed package that bundles it is bound by GPLv3 terms.
